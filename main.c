@@ -15,6 +15,9 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
+    Font font = LoadFontEx("assets/GoogleSans-Regular.ttf", 128, 0, 0);
+    printf("File exists: %d\n", FileExists("assets/GoogleSans.ttf"));
+
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
@@ -31,7 +34,7 @@ int main(void)
 
         ClearBackground(BLANK);
 
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        DrawTextEx(font,"Congrats! You created your first window!", (Vector2){190, 200}, 20, 1, LIGHTGRAY);
 
         Rectangle start = {
             (float)screenWidth / 2.0f - 200.0f / 2.0f,
