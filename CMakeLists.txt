@@ -13,7 +13,9 @@ add_executable(gabagool main.c)
 
 target_link_libraries(gabagool PRIVATE raylib)
 
+# Copy assets after build
 add_custom_command(TARGET gabagool POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E echo "Copying assets..."
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/assets
         $<TARGET_FILE_DIR:gabagool>/assets
