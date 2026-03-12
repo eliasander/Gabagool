@@ -4,13 +4,30 @@
 
 
 
+
+int screenWidth;
+int screenHeight;
+
+
+void drawBackground() {
+    Rectangle box = {
+        10,
+        10,
+        screenWidth-20,
+        screenHeight-20
+    };
+
+    Color backgroundColor = {92,168,255,255};
+    DrawRectangleRounded(box, 0.05f, 2, backgroundColor);
+}
+
 int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
 
-    int screenWidth = 1024;
-    int screenHeight = 600;
+    screenWidth = 1024;
+    screenHeight = 600;
 
     Color primaryColor = (Color){ 255, 161, 0, 255 };
     Color secondaryColor = (Color){200,200,200,255};
@@ -33,8 +50,9 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-
         ClearBackground(BLANK);
+        drawBackground();
+
         Vector2 textSize = MeasureTextEx(font,"Congrats! You created your first window!", 20, 1);
 
 
