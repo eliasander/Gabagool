@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include "C:\Users\25TEK1_c\Documents\Elias\Programmering\C\Gabagool\raylib\src\raylib.h"
+#include "raylib\src\raylib.h"
 
 int main(void)
 {
