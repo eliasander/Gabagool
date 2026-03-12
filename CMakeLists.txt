@@ -3,7 +3,11 @@ project(gabagool C)
 
 set(CMAKE_C_STANDARD 99)
 
-find_package(raylib REQUIRED)
+if(WIN32)
+    add_subdirectory(raylib)
+else()
+    find_package(raylib REQUIRED)
+endif()
 
 add_executable(gabagool main.c)
 

@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include <raylib.h>
+#include "C:\Users\25TEK1_c\Documents\Elias\Programmering\C\Gabagool\raylib\src\raylib.h"
 
 int main(void)
 {
@@ -29,12 +29,12 @@ int main(void)
         DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
 
         Rectangle start = {
-            50,
-            50,
+            (float)screenWidth / 2.0f - 50.0f / 2.0f,
+            (float)screenHeight - 75.0f,
             50,
             50
         };
-        DrawRectangleRounded(start, 1.0f, 2, GREEN);
+        DrawRectangleRounded(start, 0.2f, 2, GREEN);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
