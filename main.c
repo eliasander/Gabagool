@@ -33,19 +33,28 @@ int main(void)
         BeginDrawing();
 
         ClearBackground(BLANK);
-        int textLength = TextLength;
-        Vector2 textPos = (Vector2){200,200};
+        Vector2 textSize = MeasureTextEx(font,"Congrats! You created your first window!", 20, 1);
 
-        DrawTextEx(font,"Congrats! You created your first window!", textPos, 20, 1, LIGHTGRAY);
-
-        Rectangle start = {
+        Rectangle button = {
             (float)screenWidth / 2.0f - 200.0f / 2.0f,
             (float)screenHeight - 225.0f,
             200,
             100
         };
-        DrawRectangleRounded(start, 0.2f, 2, secondaryColor);
-        DrawRectangleRoundedLinesEx(start, 0.2f, 2, 6.0f, primaryColor);
+        DrawRectangleRounded(button, 0.2f, 2, secondaryColor);
+        DrawRectangleRoundedLinesEx(button, 0.2f, 2, 6.0f, primaryColor);
+
+
+
+        Vector2 textPos = (Vector2){
+            button.x+button.width/2-textSize.x/2,
+            button.y+button.height/2-textSize.y/2};
+
+        DrawTextEx(font,"Congrats! You created your first window!", textPos, 20, 1, RED);
+
+
+
+
 
         Rectangle mouseRec = {
             GetMouseX(),
@@ -55,7 +64,7 @@ int main(void)
         };
         DrawRectangleRec(mouseRec, secondaryColor);
 
-        if (CheckCollisionRecs(start, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        if (CheckCollisionRecs(button, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             printf("Collision\n");
         }
 
