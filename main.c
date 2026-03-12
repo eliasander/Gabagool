@@ -7,8 +7,8 @@ int main(void)
     // Initialization
     //--------------------------------------------------------------------------------------
 
-    int screenWidth = 1920;
-    int screenHeight = 1080;
+    int screenWidth = 1024;
+    int screenHeight = 600;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
