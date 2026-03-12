@@ -1,13 +1,9 @@
 
 #include <stdio.h>
-#include "raylib\src\raylib.h"
-
-
-
+#include "raylib/src/raylib.h"
 
 int screenWidth;
 int screenHeight;
-
 
 void drawBackground() {
     Rectangle box = {
@@ -94,7 +90,6 @@ int main(void)
             play_custom.y+play_custom.height/2-textSize.y/2};
 
         DrawTextEx(font,"Congrats! You created your first window!", textPos, 20, 1, RED);
-
 
         Rectangle mouseRec = {
             GetMouseX(),
