@@ -1,15 +1,17 @@
 
 #include <stdio.h>
-#include "C:\Users\25TEK1_c\Documents\Elias\Programmering\C\Gabagool\raylib\src\raylib.h"
+#include "raylib\src\raylib.h"
 
 int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+
+    int screenWidth = 1920;
+    int screenHeight = 1080;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    ToggleFullscreen();
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -19,6 +21,7 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
+
 
         // Draw
         //----------------------------------------------------------------------------------
