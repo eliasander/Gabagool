@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "raylib\src\raylib.h"
 
+
+
 int main(void)
 {
     // Initialization
@@ -16,7 +18,7 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
     Font font = LoadFontEx("assets/GoogleSans-Regular.ttf", 128, 0, 0);
-    printf("File exists: %d\n", FileExists("assets/GoogleSans.ttf"));
+    printf("File exists: %d\n", FileExists("../assets/GoogleSans.ttf"));
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -35,25 +37,45 @@ int main(void)
         ClearBackground(BLANK);
         Vector2 textSize = MeasureTextEx(font,"Congrats! You created your first window!", 20, 1);
 
-        Rectangle button = {
-            (float)screenWidth / 2.0f - 200.0f / 2.0f,
-            (float)screenHeight - 225.0f,
+
+
+        Rectangle play_basic = {
+            (float)screenWidth / 2.0f - 200.0f / 2.0f + 300.0f,
+            (float)screenHeight - 450.0f,
             200,
             100
         };
-        DrawRectangleRounded(button, 0.2f, 2, secondaryColor);
-        DrawRectangleRoundedLinesEx(button, 0.2f, 2, 6.0f, primaryColor);
+
+        Rectangle play_custom = {
+            (float)screenWidth / 2.0f - 200.0f / 2.0f - 300.0f,
+            (float)screenHeight - 450.0f,
+            200,
+            100
+        };
+
+        Rectangle leader_board = {
+            (float)screenWidth / 2.0f - 200.0f / 2.0f,
+            (float)screenHeight - 450.0f,
+            200,
+            100
+        };
+
+        DrawRectangleRounded(play_basic, 0.2f, 2, secondaryColor);
+        DrawRectangleRoundedLinesEx(play_basic, 0.2f, 2, 6.0f, primaryColor);
+
+        DrawRectangleRounded(play_custom, 0.2f, 2, secondaryColor);
+        DrawRectangleRoundedLinesEx(play_custom, 0.2f, 2, 6.0f, primaryColor);
+
+        DrawRectangleRounded(leader_board, 0.2f, 2, secondaryColor);
+        DrawRectangleRoundedLinesEx(leader_board, 0.2f, 2, 6.0f, primaryColor);
 
 
 
         Vector2 textPos = (Vector2){
-            button.x+button.width/2-textSize.x/2,
-            button.y+button.height/2-textSize.y/2};
+            play_custom.x+play_custom.width/2-textSize.x/2,
+            play_custom.y+play_custom.height/2-textSize.y/2};
 
         DrawTextEx(font,"Congrats! You created your first window!", textPos, 20, 1, RED);
-
-
-
 
 
         Rectangle mouseRec = {
@@ -62,10 +84,15 @@ int main(void)
             1,
             1
         };
+
         DrawRectangleRec(mouseRec, secondaryColor);
 
-        if (CheckCollisionRecs(button, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-            printf("Collision\n");
+        if (CheckCollisionRecs(play_basic, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            printf("Collision basic\n");
+        } else if (CheckCollisionRecs(play_custom, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            printf("Collision custom\n");
+        } else if (CheckCollisionRecs(leader_board, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            printf("Collision leader\n");
         }
 
         EndDrawing();
