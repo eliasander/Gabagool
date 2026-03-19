@@ -15,6 +15,19 @@
 int screenWidth;
 int screenHeight;
 int currentSelect = 1;
+bool shoulddraw = false;
+char leaderboardlist[] = {
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+};
 
 void drawBackground() {
     Rectangle box = {
@@ -139,8 +152,15 @@ int main(void)
             1,
             1
         };
+        Rectangle leaderboard = {
+            leader_board.x,
+            leader_board.y,
+            BOX_WIDTH,
+            BOX_HEIGHT * 1.7
+        };
 
         DrawRectangleRec(mouseRec, SECONDARY_COLOR);
+        if (shoulddraw == true) { DrawRectangleRec(leaderboard, SECONDARY_COLOR); }
 
         if (CheckCollisionRecs(play_custom, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             printf("Collision custom\n");
@@ -149,6 +169,9 @@ int main(void)
             printf("Collision basic\n");
             currentSelect = 1;
         } else if (CheckCollisionRecs(leader_board, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            if (shoulddraw == false ) {
+                shoulddraw = true;
+            } else {shoulddraw = false;}
             printf("Collision leader\n");
             currentSelect = 2;
         }
