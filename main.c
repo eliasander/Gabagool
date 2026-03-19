@@ -14,6 +14,7 @@
 
 int screenWidth;
 int screenHeight;
+int currentSelect = 1;
 
 void drawBackground() {
     Rectangle box = {
@@ -25,6 +26,17 @@ void drawBackground() {
 
     Color backgroundColor = {92,168,255,255};
     DrawRectangleRounded(box, 0.05f, 2, backgroundColor);
+}
+
+void keyboardControls() {
+    if (IsKeyPressed(KEY_LEFT)) {
+        if (currentSelect > 0)
+            currentSelect--;
+    }
+    if (IsKeyPressed(KEY_RIGHT)) {
+        if (currentSelect < 2)
+            currentSelect++;
+    }
 }
 
 int main(void)
@@ -46,7 +58,6 @@ int main(void)
     float currentGlowX = (float)screenWidth / 2.0f - BOX_WIDTH / 2.0f;
     float currentGlowY = (float)screenHeight / 2.0f - BOX_HEIGHT / 2.0f;
 
-    int currentSelect = 1;
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -142,14 +153,7 @@ int main(void)
             currentSelect = 2;
         }
 
-        if (IsKeyPressed(KEY_LEFT)) {
-            if (currentSelect > 0)
-                currentSelect--;
-        }
-        if (IsKeyPressed(KEY_RIGHT)) {
-            if (currentSelect < 2)
-                currentSelect++;
-        }
+        keyboardControls();
 
         if (currentSelect == 0) {
             currentGlowX = play_custom.x;
