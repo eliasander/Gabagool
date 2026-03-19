@@ -2,6 +2,13 @@
 #include <stdio.h>
 #include "raylib/src/raylib.h"
 
+#define BOX_HEIGHT 200
+#define BOX_WIDTH 200
+
+
+
+
+
 int screenWidth;
 int screenHeight;
 
@@ -54,24 +61,24 @@ int main(void)
 
 
         Rectangle play_basic = {
-            (float)screenWidth / 2.0f - 200.0f / 2.0f + 300.0f,
-            (float)screenHeight - 450.0f,
-            200,
-            100
+            (float)screenWidth / 2.0f - BOX_WIDTH / 2.0f + 300.0f,
+            (float)screenHeight / 2.0f - BOX_HEIGHT / 2.0f,
+            BOX_WIDTH,
+            BOX_HEIGHT
         };
 
         Rectangle play_custom = {
-            (float)screenWidth / 2.0f - 200.0f / 2.0f - 300.0f,
-            (float)screenHeight - 450.0f,
-            200,
-            100
+            (float)screenWidth / 2.0f - BOX_WIDTH / 2.0f - 300.0f,
+            (float)screenHeight / 2.0f - BOX_HEIGHT / 2.0f,
+            BOX_WIDTH,
+            BOX_HEIGHT
         };
 
         Rectangle leader_board = {
-            (float)screenWidth / 2.0f - 200.0f / 2.0f,
-            (float)screenHeight - 450.0f,
-            200,
-            100
+            (float)screenWidth / 2.0f - BOX_WIDTH / 2.0f,
+            (float)screenHeight / 2.0f - BOX_HEIGHT / 2.0f,
+            BOX_WIDTH,
+            BOX_HEIGHT
         };
 
         DrawRectangleRounded(play_basic, 0.2f, 2, secondaryColor);
@@ -82,7 +89,6 @@ int main(void)
 
         DrawRectangleRounded(leader_board, 0.2f, 2, secondaryColor);
         DrawRectangleRoundedLinesEx(leader_board, 0.2f, 2, 6.0f, primaryColor);
-
 
 
         Vector2 textPos = (Vector2){
