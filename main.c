@@ -5,6 +5,9 @@
 #define BOX_HEIGHT 200
 #define BOX_WIDTH 200
 
+#define PRIMARY_COLOR (Color){118, 118, 118, 255}
+#define SECONDARY_COLOR (Color){195, 195, 195, 255}
+#define TERTIARY_COLOR (Color){244, 39, 39, 255}
 
 
 
@@ -32,13 +35,10 @@ int main(void)
     screenWidth = 1024;
     screenHeight = 600;
 
-    Color primaryColor = (Color){ 255, 161, 0, 255 };
-    Color secondaryColor = (Color){200,200,200,255};
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
     Font font = LoadFontEx("assets/GoogleSans-Regular.ttf", 128, 0, 0);
-    printf("File exists: %d\n", FileExists("../assets/GoogleSans.ttf"));
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -81,14 +81,23 @@ int main(void)
             BOX_HEIGHT
         };
 
-        DrawRectangleRounded(play_basic, 0.2f, 2, secondaryColor);
-        DrawRectangleRoundedLinesEx(play_basic, 0.2f, 2, 6.0f, primaryColor);
+        float currentGlowX = (float)screenWidth / 2.0f - BOX_WIDTH / 2.0f;
+        float currentGlowY = (float)screenWidth / 2.0f - BOX_WIDTH / 2.0f;
+        Rectangle glow = {
+            currentGlowX-BOX_WIDTH*0.05f,
+            currentGlowY-BOX_HEIGHT*0.05f,
+            BOX_WIDTH*1.1f,
+            BOX_HEIGHT*1.1f
+        };
 
-        DrawRectangleRounded(play_custom, 0.2f, 2, secondaryColor);
-        DrawRectangleRoundedLinesEx(play_custom, 0.2f, 2, 6.0f, primaryColor);
+        DrawRectangleRounded(play_basic, 0.2f, 2, SECONDARY_COLOR);
+        DrawRectangleRoundedLinesEx(play_basic, 0.2f, 2, 6.0f, PRIMARY_COLOR);
 
-        DrawRectangleRounded(leader_board, 0.2f, 2, secondaryColor);
-        DrawRectangleRoundedLinesEx(leader_board, 0.2f, 2, 6.0f, primaryColor);
+        DrawRectangleRounded(play_custom, 0.2f, 2, SECONDARY_COLOR);
+        DrawRectangleRoundedLinesEx(play_custom, 0.2f, 2, 6.0f, PRIMARY_COLOR);
+
+        DrawRectangleRounded(leader_board, 0.2f, 2, SECONDARY_COLOR);
+        DrawRectangleRoundedLinesEx(leader_board, 0.2f, 2, 6.0f, PRIMARY_COLOR);
 
 
         Vector2 textPos = (Vector2){
@@ -104,7 +113,7 @@ int main(void)
             1
         };
 
-        DrawRectangleRec(mouseRec, secondaryColor);
+        DrawRectangleRec(mouseRec, SECONDARY_COLOR);
 
         if (CheckCollisionRecs(play_basic, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             printf("Collision basic\n");
