@@ -43,6 +43,9 @@ int main(void)
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
+    float currentGlowX = (float)screenWidth / 2.0f - BOX_WIDTH / 2.0f;
+    float currentGlowY = (float)screenHeight / 2.0f - BOX_HEIGHT / 2.0f;
+
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
@@ -81,14 +84,14 @@ int main(void)
             BOX_HEIGHT
         };
 
-        float currentGlowX = (float)screenWidth / 2.0f - BOX_WIDTH / 2.0f;
-        float currentGlowY = (float)screenWidth / 2.0f - BOX_WIDTH / 2.0f;
         Rectangle glow = {
             currentGlowX-BOX_WIDTH*0.05f,
             currentGlowY-BOX_HEIGHT*0.05f,
             BOX_WIDTH*1.1f,
             BOX_HEIGHT*1.1f
         };
+
+        DrawRectangleRounded(glow, 0.2f, 2, TERTIARY_COLOR);
 
         DrawRectangleRounded(play_basic, 0.2f, 2, SECONDARY_COLOR);
         DrawRectangleRoundedLinesEx(play_basic, 0.2f, 2, 6.0f, PRIMARY_COLOR);
@@ -117,10 +120,16 @@ int main(void)
 
         if (CheckCollisionRecs(play_basic, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             printf("Collision basic\n");
+            currentGlowX = play_basic.x;
+            currentGlowY = play_basic.y;
         } else if (CheckCollisionRecs(play_custom, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             printf("Collision custom\n");
+            currentGlowX = play_custom.x;
+            currentGlowY = play_custom.y;
         } else if (CheckCollisionRecs(leader_board, mouseRec) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             printf("Collision leader\n");
+            currentGlowX = leader_board.x;
+            currentGlowY = leader_board.y;
         }
 
         EndDrawing();
